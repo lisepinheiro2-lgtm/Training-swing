@@ -15,8 +15,8 @@ public class RecurringEvent {
 	private LocalDate startDate;
 	private LocalDate endDate;
 
-	public RecurringEvent(DayOfWeek dayOfWeek, String title, LocalDate startDate, LocalTime startTime,
-			LocalDate endDate, LocalTime endTime) {
+	public RecurringEvent(String title, LocalDate startDate, LocalDate endDate, DayOfWeek dayOfWeek,
+			LocalTime startTime, LocalTime endTime) {
 
 		this.id = UUID.randomUUID().toString();
 		this.title = title;
