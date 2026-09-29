@@ -137,6 +137,20 @@ public class Agenda {
 		return true;
 	}
 
+	public void removeEventsByRecurringId(String recurringId) {
+
+		for (int i = events.size() - 1; i >= 0; i--) {
+			Event selectedEvent = events.get(i);
+			String currentRecurringId = selectedEvent.getRecurringId();
+
+			if (recurringId.equals(currentRecurringId)) {
+				events.remove(i);
+			}
+		}
+
+		saveEvents();
+	}
+
 	public void addEvent(Event event) {
 
 		events.add(event);

@@ -13,8 +13,13 @@ import java.util.ArrayList;
 public class RecurringEventList {
 
 	private ArrayList<RecurringEvent> recurringEvents = new ArrayList<>();
-	
+
 	private final String fileName = "recurringEvents.csv";
+
+	public RecurringEventList() {
+
+		loadRecurringEvents();
+	}
 
 	private void loadRecurringEvents() {
 
@@ -41,7 +46,7 @@ public class RecurringEventList {
 					LocalTime startTime = LocalTime.parse(data[4]);
 					LocalTime endTime = LocalTime.parse(data[5]);
 					String id = data[6];
-				
+
 					RecurringEvent recurringEvent = new RecurringEvent(title, startDate, endDate, dayOfWeek, startTime,
 							endTime);
 
@@ -78,6 +83,21 @@ public class RecurringEventList {
 			System.out.println("Erreur pendant la sauvegarde du fichier recurring events");
 			e.printStackTrace();
 		}
+	}
+
+	public void removeRecurringEventById(String recurringId) {
+
+		for (int i = recurringEvents.size() - 1; i >= 0; i--) {
+			RecurringEvent selectedEvent = recurringEvents.get(i);
+			String currentRecurringId = selectedEvent.getId();
+
+			if (recurringId.equals(currentRecurringId)) {
+				recurringEvents.remove(i);	
+				break;
+			}
+		}
+		
+		saveRecurringEvents();
 	}
 
 	public void addRecurringEvent(RecurringEvent recurringEvent) {
